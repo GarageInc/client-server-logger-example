@@ -7,3 +7,14 @@ C:\Data\all\C#\App\App\obj\Debug\App.Properties.Resources.resources
 C:\Data\all\C#\App\App\obj\Debug\App.csproj.GenerateResource.Cache
 C:\Data\all\C#\App\App\obj\Debug\App.exe
 C:\Data\all\C#\App\App\obj\Debug\App.pdb
+C:\Data\client-server-logger-example\App\bin\Debug\App.exe.config
+C:\Data\client-server-logger-example\App\obj\Debug\App.exe
+C:\Data\client-server-logger-example\App\obj\Debug\App.pdb
+C:\Data\client-server-logger-example\App\bin\Debug\App.exe
+C:\Data\client-server-logger-example\App\bin\Debug\App.pdb
+C:\Data\client-server-logger-example\App\obj\Debug\App.csprojResolveAssemblyReference.cache
+C:\Data\client-server-logger-example\App\obj\Debug\App.Form1.resources
+C:\Data\client-server-logger-example\App\obj\Debug\App.Properties.Resources.resources
+C:\Data\client-server-logger-example\App\obj\Debug\App.csproj.GenerateResource.Cache
+C:\Data\client-server-logger-example\App\bin\Debug\log4net.dll
+C:\Data\client-server-logger-example\App\bin\Debug\log4net.xml

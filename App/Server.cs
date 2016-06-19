@@ -1,19 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Threading;
-using System.Net.Sockets;
-using System.Net;
-
+﻿
 namespace App
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Threading;
+    using System.Net.Sockets;
+    using System.Net;
+    using log4net;
+    using System.Reflection;
+
     class Server:Point
     {
         public event MethodContainer onTrace;
 
         List<Socket> clients = new List<Socket>(); // клиент
+
+        protected ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         public Server()
         {
@@ -36,7 +41,7 @@ namespace App
                 socket.Listen(300); // начинаем прослушивать, макс. 300
                 
                 running = true;
-
+                
                 AcceptSocket(); // начинаем принимать сокеты
             }
             else
@@ -74,11 +79,11 @@ namespace App
                                 int client_id = BitConverter.ToInt32(intBytes, 0);
 
                                 // коллекционируем лог, а потом - флушим
-                                Logger current_logger = new Logger(client_id);
+                                //Logger current_logger = new Logger(client_id);
 
-                                TimerCallback tcb = current_logger.flush;
+                                //TimerCallback tcb = current_logger.flush;
 
-                                Timer timer = new Timer(tcb, autoEvent, 0, 10000);
+                                //Timer timer = new Timer(tcb, autoEvent, 0, 10000);
                                 
                                 // Пока есть соединение - ловим биты-байты
                                 while (temp.Connected)
@@ -96,7 +101,9 @@ namespace App
                                     
                                     DateTime date = DateTime.FromBinary(dateLongBack);
 
-                                    current_logger.logs.Add(String.Format("{0}, {1}", number, date));
+                                    Logger.For( this ).Info( String.Format("{0}, {1}", number, date) );
+
+                                    //current_logger.logs.Add(String.Format("{0}, {1}", number, date));
 
                                     onTrace?.Invoke(String.Format("[Сервер] Получено: {0}, {1}", number, date));
 
@@ -118,6 +125,8 @@ namespace App
                     }
                 } catch(Exception error)
                 {
+                    Logger.For(this).Error( error.Message );
+
                     onTrace?.Invoke(String.Format("[Сервер] ошибка: {0}", error.Message));
                 }
             });
